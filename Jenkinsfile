@@ -30,7 +30,7 @@ pipeline {
                   container('helm') {
                       // Init authentication and config for your kubernetes cluster
                       sh("helm init --client-only --skip-refresh")
-                      sh("helm upgrade --install --wait prod-my-app ./helm --namespace prod")
+                      sh("helm upgrade --install --wait prod-my-app ./helm --namespace pro")
                     }
                 }
             }

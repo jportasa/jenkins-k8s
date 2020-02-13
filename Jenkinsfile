@@ -11,23 +11,25 @@ pipeline {
               // The needed steps for your testing
               container('docker') {
                     sh 'docker images'
-                }
+               }
             }
         }
 
         stage('Build application') {
             steps {
-              // Build the app
-              container('docker') {
+               // Build the app
+               container('docker') {
                     sh 'docker images'
+               }
             }
         }
 
         stage('Docker publish') {
             steps {
               // Publish a docker image for your application
-              container('docker') {
+               container('docker') {
                     sh 'docker images'
+               }
             }
         }
 

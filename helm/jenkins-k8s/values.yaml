@@ -29,7 +29,8 @@ master:
 # adminPassword: cGFzc3dvcmQ
 service:
   name: jenkins-k8s
-  type: ClusterIP
+  #type: ClusterIP
+  type: LoadBalancer
   ## Whitelist the IPs that can access Jenkins
   loadBalancerSourceRanges:
   - 0.0.0.0/0
@@ -42,7 +43,7 @@ resources:
     cpu: 100m
     memory: 512Mi
   limits:
-    memory: 1Gi
+    memory: 2Gi
 storage:
   persistence:
     enabled: true

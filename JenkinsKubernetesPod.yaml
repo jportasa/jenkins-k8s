@@ -1,10 +1,15 @@
 apiVersion: v1
 kind: Pod
+metadata:
+   labels:
+     name: jenkins-slave
 spec:
+  #serviceAccount: jenkins
   containers:  # list of containers that you want present for your build, you can define a default container in the Jenkinsfile
     - name: docker
       image: docker:18.06.1
       command: ["tail", "-f", "/dev/null"]
+      tty: true
       imagePullPolicy: Always
       volumeMounts:
         - name: docker
@@ -12,6 +17,7 @@ spec:
     - name: helm
       image: alpine/helm
       command: ["tail", "-f", "/dev/null"]
+      tty: true
       imagePullPolicy: Always
   volumes:
     - name: docker

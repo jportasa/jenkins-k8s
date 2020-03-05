@@ -8,7 +8,6 @@ spec:
   containers:  # list of containers that you want present for your build, you can define a default container in the Jenkinsfile
     - name: jenkins-slave
       image: jenkinsci/jnlp-slave
-      command: ["/bin/sh", "-c", "cat"]
       tty: true
       imagePullPolicy: Always
     - name: busybox

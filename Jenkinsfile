@@ -11,9 +11,9 @@ pipeline {
     }
     stages {
         stage('Run unit tests') {
-            when {
-                branch 'PR-*'
-            }
+            #when {
+            #    branch 'PR-*'
+            #}
             steps {
                 // The needed steps for your testing
                 container('docker') {

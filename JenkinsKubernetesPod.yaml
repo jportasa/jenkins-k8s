@@ -6,31 +6,26 @@ metadata:
 spec:
   #serviceAccount: jenkins
   containers:  # list of containers that you want present for your build, you can define a default container in the Jenkinsfile
-    - name: "jenkins-slave"
-      image: "jenkinsci/jnlp-slave"
-      env:
-        - name: "JENKINS_URL"
-          value: "${JENKINS_URL}"
-    - name: docker
-      image: docker:18.06.1
+    - name: busybox
+      image: busybox
       command: ["tail", "-f", "/dev/null"]
       tty: true
       imagePullPolicy: Always
-      volumeMounts:
-        - name: docker
-          mountPath: /var/run/docker.sock # We use the k8s host docker engine
-      resources:  # limits the resources your build contaienr
-        requests:
-          memory: "500Mi"
-          cpu: "250m"
-        limits:
-          memory: "1Gi"
-    - name: helm
-      image: alpine/helm
-      command: ["tail", "-f", "/dev/null"]
-      tty: true
-      imagePullPolicy: Always
-  volumes:
-    - name: docker
-      hostPath:
-        path: /var/run/docker.sock
+#      volumeMounts:
+#        - name: docker
+#          mountPath: /var/run/docker.sock # We use the k8s host docker engine
+#      resources:  # limits the resources your build contaienr
+#        requests:
+#          memory: "500Mi"
+#          cpu: "250m"
+#        limits:
+#          memory: "1Gi"
+#    - name: helm
+#      image: alpine/helm
+#      command: ["tail", "-f", "/dev/null"]
+#      tty: true
+#      imagePullPolicy: Always
+# volumes:
+#    - name: docker
+#      hostPath:
+#        path: /var/run/docker.sock

@@ -45,13 +45,10 @@ pipeline {
 
         stage('Deployment') {
             steps {
-                script {
-                    container('helm') {
-                      // Init authentication and config for your kubernetes cluster
-                      sh("helm init --client-only --skip-refresh")
-                      sh("helm upgrade --install --wait prod-my-app ./helm --namespace pro")
-                    }
-                }
+                 container('helm') {
+                    // Init authentication and config for your kubernetes cluster
+                    sh "helm upgrade --install --wait prod-my-app ./helm --namespace pro"
+                 }
             }
         }
     }

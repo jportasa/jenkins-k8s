@@ -1,12 +1,16 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: jenkins-slave
   labels:
      name: jenkins-slave
 spec:
   #serviceAccount: jenkins
   containers:  # list of containers that you want present for your build, you can define a default container in the Jenkinsfile
+    - name: "jenkins-slave"
+      image: "jenkinsci/jnlp-slave"
+      env:
+        - name: "JENKINS_URL"
+          value: "${JENKINS_URL}"
     - name: docker
       image: docker:18.06.1
       command: ["tail", "-f", "/dev/null"]

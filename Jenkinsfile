@@ -8,19 +8,24 @@ pipeline {
         }
     }
     environment {
-        APP_NAME = 'python-quickstart'
-        DOCKER_REGISTRY_ORG = 'jportasa'
+        PROJECT = "REPLACE_WITH_YOUR_PROJECT_ID"
+        APP_NAME = "gceme"
+        FE_SVC_NAME = "${APP_NAME}-frontend"
+        CLUSTER = "jenkins-cd"
+        CLUSTER_ZONE = "us-east1-d"
+        IMAGE_TAG = "gcr.io/${PROJECT}/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
+        JENKINS_CRED = "${PROJECT}"
     }
     stages {
         stage('Run unit tests') {
-            //when {
-            //    branch 'PR-*'
-            //}
+            //when { branch 'PR-*'}
             steps {
                 // The needed steps for your testing
                 container('busybox') {
-                    sh 'echo "Hola"'
-                    sh 'echo $APP_NAME'
+                    sh """
+                        echo 'Hola"
+                        echo $APROJECT
+                     """
                }
             }
         }

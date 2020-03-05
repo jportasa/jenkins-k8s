@@ -1,4 +1,5 @@
 pipeline {
+
     agent {
         kubernetes {
             label 'jenkins-slave'  // all your pods will be named with this prefix, followed by a unique id
@@ -24,7 +25,7 @@ pipeline {
                 container('busybox') {
                     sh """
                         echo 'Hola"
-                        echo $APROJECT
+                        echo $PROJECT
                      """
                }
             }

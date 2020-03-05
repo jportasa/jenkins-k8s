@@ -43,7 +43,7 @@ pipeline {
             }
         }
 
-        stage('Deployment') {
+        stage('Deployment to PRO') {
             steps {
                  container('helm') {
                     // Init authentication and config for your kubernetes cluster

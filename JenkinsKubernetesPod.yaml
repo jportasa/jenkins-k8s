@@ -10,11 +10,7 @@ spec:
       image: jenkinsci/jnlp-slave
       tty: true
       imagePullPolicy: Always
-      env:
-        - name: JENKINS_URL
-          value: http://jenkins-jenkins-k8s:8080
-        - name: JENKINS_TUNNEL
-          value: jenkins-jenkins-k8s-agent:50000
+      args: ['\$(JENKINS_SECRET)', '\$(JENKINS_NAME)']
     - name: busybox
       image: busybox
       command: ["tail", "-f", "/dev/null"]

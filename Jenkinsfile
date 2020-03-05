@@ -3,7 +3,7 @@ pipeline {
         kubernetes {
             label 'jenkins-slave'  // all your pods will be named with this prefix, followed by a unique id
             yamlFile 'JenkinsKubernetesPod.yaml'
-            idleMinutes 5  // how long the pod will live after no jobs have run on it
+            idleMinutes 2  // how long the pod will live after no jobs have run on it
         }
     }
     environment {
@@ -18,7 +18,7 @@ pipeline {
             steps {
                 // The needed steps for your testing
                 container('busybox') {
-                    sh 'echo "Hola"'
+                    sh 'echo hello world'
                     sh 'echo $APP_NAME'
                }
             }

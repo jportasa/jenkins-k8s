@@ -18,8 +18,8 @@ pipeline {
             //}
             steps {
                 // The needed steps for your testing
-                container('docker') {
-                    sh 'docker images'
+                container('busybox') {
+                    sh 'echo "Hola"'
                     sh 'echo $APP_NAME'
                }
             }

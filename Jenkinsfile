@@ -1,27 +1,37 @@
 pipeline {
-    agent {
-        kubernetes {
-            label 'jenkins-slave'  // all your pods will be named with this prefix, followed by a unique id
-            yamlFile 'JenkinsKubernetesPod.yaml'
-            idleMinutes 2  // how long the pod will live after no jobs have run on it
+  agent {
+    kubernetes {
+      yaml """
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    some-label: some-label-value
+spec:
+  containers:
+  - name: maven
+    image: maven:alpine
+    command:
+    - cat
+    tty: true
+  - name: busybox
+    image: busybox
+    command:
+    - cat
+    tty: true
+"""
+    }
+  }
+  stages {
+    stage('Run maven') {
+      steps {
+        container('maven') {
+          sh 'mvn -version'
         }
-    }
-    environment {
-        APP_NAME = 'python-quickstart'
-        DOCKER_REGISTRY_ORG = 'jportasa'
-    }
-    stages {
-        stage('Run unit tests') {
-            //when {
-            //    branch 'PR-*'
-            //}
-            steps {
-                // The needed steps for your testing
-                container('busybox') {
-                    sh 'echo hello world'
-                    sh 'echo $APP_NAME'
-               }
-            }
+        container('busybox') {
+          sh '/bin/busybox'
         }
+      }
     }
+  }
 }
